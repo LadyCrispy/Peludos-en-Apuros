@@ -1,8 +1,10 @@
 class Laberint{
-    constructor(ctx, w, h, player){
+    constructor(ctx, w, h, player, grid){
         this.ctx=ctx
         this.width=w
         this.height=h
+        this.player=player
+        this.grid=grid
         
     }
     printLaberint(){

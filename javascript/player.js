@@ -18,12 +18,12 @@ class Player{
         let row,col
         this.grid.forEach((row,idx) => {
             if(row.indexOf(0) >= 0) {
-                row = idx
                 col = row.indexOf(0) +1
+                row = idx
             }
         })
-        grid[row][col] = 0
-        grid[row][col-1]=2
+        this.grid[this.row][this.col] = 0
+        this.grid[this.row][this.col-1]=2
     }
     moveLeft(){
 
