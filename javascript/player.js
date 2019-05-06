@@ -16,10 +16,10 @@ class Player{
     }
     moveRight(){
         let row,col
-        grid.forEach((row,idx) => {
+        this.grid.forEach((row,idx) => {
             if(row.indexOf(0) >= 0) {
                 row = idx
-                col = row.indexOf(0) + 1
+                col = row.indexOf(0) +1
             }
         })
         grid[row][col] = 0
