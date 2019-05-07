@@ -3,62 +3,74 @@ class Player{
         this.ctx=ctx
         this.w=35
         this.h=35
-        this.x=8
-        this.y=600-90
-        this.row= undefined
+        this.row=undefined
         this.col=undefined
         this.grid=grid
+        
 
     }
 
-    drawPlayer(){
+    drawPlayer(col, row){
         this.imgP=new Image()
         this.imgP.src= 'Images/chica.svg'
-        this.ctx.drawImage(this.imgP,this.x,this.y, this.w, this.h)
+        this.ctx.drawImage(this.imgP,col,row,this.w, this.h)
     }
 
     setListeners(){
-        document.onkeydown= ((e)=>{
-            if(event.keycode==38){
-                this.player.moveUp()
+        document.onkeydown = e => {
+            if(e.keyCode == 38){
+                console.log("Arriba")
+                this.moveUp()
             }
-            if(event.keycode==40){
-                this.player.moveDown()
+            if(e.keyCode==40){
+                console.log("Abajo")
+                this.moveDown()
             }
-            if(event.keycode==39){
-                this.player.moveRight()
+            if(e.keyCode==39){
+                console.log("Derecha")
+                this.moveRight()
             }
-            if(event.keycode==37){
-                this.player.moveLeft()
+            if(e.keyCode==37){
+                console.log("Izquierda")
+                this.moveLeft()
             }
-        })
+        }
     }
 
     playerPosition(){
-        
+
         this.grid.forEach((arr,idx) => {
             if(arr.indexOf(0) >= 0) {
                 this.row = idx
                 this.col = arr.indexOf(0)
-                return this.grid[this.row][this.col]
             }
         })
-        
-        
+            
     }
     moveRight(){
         this.playerPosition()
-        this.grid[this.row][this.col]=2
+
+        this.grid[this.row][this.col] = 2
         this.grid[this.row][this.col+1]=0
+
     }
     moveLeft(){
+        this.playerPosition()
 
+        this.grid[this.row][this.col] = 2
+        this.grid[this.row][this.col-1]=0
     }
     moveUp(){
+        this.playerPosition()
 
+        this.grid[this.row][this.col]=2
+        this.grid[this.row-1][this.col]=0
     }
     moveDown(){
+        this.playerPosition()
 
+        this.grid[this.row][this.col]=2
+        this.grid[this.row+1][this.col]=0
     }
     
 
