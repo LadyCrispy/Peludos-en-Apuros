@@ -10,6 +10,7 @@ const Game={
     ctx:undefined,
     width:undefined,
     height:undefined,
+    //player: undefined,
     grid:[
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
         [1,2,2,2,2,2,1,2,2,2,1,1,1,2,2,2,2,2],
@@ -29,8 +30,8 @@ init: function(id){
     this.ctx=this.canvasDom.getContext('2d')
     this.setDimensions()
     this.start()
-    this.player= new Player(this.ctx,this.laberint.grid)
-    this.laberint= new Laberint(this.ctx, this.width, this.height, this.player)
+    this.player= new Player(this.ctx,this.grid)
+    this.laberint= new Laberint(this.ctx, this.width, this.height, this.player, this.grid)
 },
 setDimensions: function(){
     this.canvasDom.setAttribute('width', '900')
@@ -41,13 +42,16 @@ setDimensions: function(){
 start: function(){
     setInterval(()=>{
         this.draw()
-        // this.move()
+        this.move()
     }, 1000/60)
 },
 draw: function(){
     this.laberint.printLaberint()
 },
 move: function(){
-    this.player.moveRight()
+    this.player.setListeners()
+    //this.player.playerPosition()
+    //this.player.moveRight()
+   
 }
 }
