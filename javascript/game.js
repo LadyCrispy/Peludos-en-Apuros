@@ -13,16 +13,16 @@ const Game={
     //player: undefined,
     grid:[
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,3,2,2,2,2,1,2,2,2,1,1,1,2,3,2,2,2],
+        [1,3,2,2,5,2,1,2,5,2,1,1,1,2,3,2,2,6],
         [1,2,1,1,1,2,2,2,1,2,1,1,1,2,1,1,1,1],
-        [1,2,1,1,1,1,2,1,1,3,1,1,1,2,2,2,2,1],
+        [1,2,1,1,1,1,2,1,1,3,1,1,1,2,2,5,2,1],
         [1,2,2,3,1,1,4,1,1,2,1,1,1,1,1,1,2,1],
         [1,1,1,2,1,1,2,2,2,2,2,2,2,3,2,2,2,1],
         [1,1,2,2,2,1,1,1,1,3,1,1,1,1,1,1,1,1],
-        [1,1,2,1,2,1,4,2,2,2,2,2,1,1,4,2,3,1],
+        [1,1,5,1,2,1,4,2,2,2,2,5,1,1,4,2,3,1],
         [1,1,2,1,2,1,1,1,1,2,1,2,1,1,2,1,2,1],
         [1,1,2,1,3,2,2,1,1,2,1,2,1,1,2,1,2,1],
-        [0,2,2,1,1,1,2,2,2,3,1,2,2,2,2,2,2,1],
+        [0,2,2,1,1,1,2,2,2,3,1,2,2,2,2,2,5,1],
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     ],
 init: function(id){
@@ -32,10 +32,12 @@ init: function(id){
     this.start()
 },
 reset: function() {
+    this.finish=new Finish(this.ctx, this.grid)
+    this.dog=new Dog(this.ctx,this.grid)
     this.cat=new Cat(this.ctx, this.grid)
     this.enemy=new Enemy(this.ctx, this.grid)
     this.player= new Player(this.ctx,this.grid)
-    this.laberint= new Laberint(this.ctx, this.width, this.height, this.player,this.cat, this.enemy, this.grid)
+    this.laberint= new Laberint(this.ctx, this.width, this.height, this.player,this.cat, this.dog, this.finish, this.enemy, this.grid)
 },
 setDimensions: function(){
     this.canvasDom.setAttribute('width', '900')
@@ -58,7 +60,10 @@ draw: function(){
 move: function(){
     this.player.playerPosition()
     this.cat.catPosition()
+    this.dog.dogPosition()
+    this.finish.finishPosition()    
     this.enemy.enemyPosition()
+
 },
 clearAll: function(){
     this.ctx.clearRect(0, 0, this.width, this.height)
