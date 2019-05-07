@@ -2,8 +2,8 @@ class Dog{
     constructor(ctx, grid){
         this.ctx=ctx
         this.grid=grid
-        this.w=35
-        this.h=35  
+        this.w=60
+        this.h=60  
         this.row=undefined
         this.col=undefined    
     }

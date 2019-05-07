@@ -18,14 +18,14 @@ class Laberint{
               case 0:
                 this.img2=new Image()
                 this.img2.src='Images/azulejo.svg'
-                this.ctx.drawImage(this.img2, col*50, row*50, 50, 50)
-                this.player.drawPlayer(col*50,row*50)
+                this.ctx.drawImage(this.img2, col*80, row*80, 80, 80)
+                this.player.drawPlayer(col*80,row*80)
               break;
 
               case 1:
                 this.img=new Image()
-                this.img.src='Images/pared.svg'
-                this.ctx.drawImage(this.img, col*50, row*50, 50, 50)
+                this.img.src='Images/brick-wall.svg'
+                this.ctx.drawImage(this.img, col*80, row*80, 82, 80)
                 //const pattern= this.ctx.createPattern(this.img, 'repeat')
                 //this.ctx.fillStyle= pattern
                 //this.ctx.fillRect(col*50, row*50, 50, 50)
@@ -34,7 +34,7 @@ class Laberint{
               case 2:
                 this.img2=new Image()
                 this.img2.src='Images/azulejo.svg'
-                this.ctx.drawImage(this.img2, col*50, row*50, 50, 50)
+                this.ctx.drawImage(this.img2, col*80, row*80, 80, 80)
                 //this.ctx.strokeStyle = 'black';
                 //this.ctx.lineWidth = 1;
                 //this.ctx.strokeRect(col*50, row*50, 50, 50);
@@ -45,31 +45,33 @@ class Laberint{
               break;
 
               case 3:
-              this.img2=new Image()
-              this.img2.src='Images/azulejo.svg'
-              this.ctx.drawImage(this.img2, col*50, row*50, 50, 50)
-              this.cat.drawCat(col*50, row*50)
+                this.img2=new Image()
+                this.img2.src='Images/azulejo.svg'
+                this.ctx.drawImage(this.img2, col*80, row*80, 80, 80)
+                this.cat.drawCat(col*80, row*80)
               break;
 
               case 4:
-              this.img2=new Image()
-              this.img2.src='Images/azulejo.svg'
-              this.ctx.drawImage(this.img2, col*50, row*50, 50, 50)
-              this.enemy.drawEnemy(col*50, row*50)
+                this.img2=new Image()
+                this.img2.src='Images/azulejo.svg'
+                this.ctx.drawImage(this.img2, col*80, row*80, 80, 80)
+                this.enemy.drawEnemy(col*80, row*80)
               break;
 
               case 5:
-              this.img2=new Image()
-              this.img2.src='Images/azulejo.svg'
-              this.ctx.drawImage(this.img2, col*50, row*50, 50, 50)
-              this.dog.drawDog(col*50, row*50)
+                this.img2=new Image()
+                this.img2.src='Images/azulejo.svg'
+                this.ctx.drawImage(this.img2, col*80, row*80, 80, 80)
+                this.dog.drawDog(col*80, row*80)
               break;
 
               case 6:
-              this.img2=new Image()
-              this.img2.src='Images/azulejo.svg'
-              this.ctx.drawImage(this.img2, col*50, row*50, 50, 50)
-              this.finish.drawFinish(col*50, row*50)
+                //this.img2=new Image()
+                //this.img2.src='Images/azulejo.svg'
+                //this.ctx.drawImage(this.img2, col*80, row*80, 80, 80)
+                this.ctx.fillStyle = 'lightblue'
+                this.ctx.fillRect(col*80, row*80, 80, 80)
+                this.finish.drawFinish(col*80, row*80)
               break;
             }
           }

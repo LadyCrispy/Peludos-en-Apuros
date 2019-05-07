@@ -35,15 +35,15 @@ reset: function() {
     this.finish=new Finish(this.ctx, this.grid)
     this.dog=new Dog(this.ctx,this.grid)
     this.cat=new Cat(this.ctx, this.grid)
-    this.enemy=new Enemy(this.ctx, this.grid)
+   this.enemy= new Enemy(this.ctx, this.grid)
     this.player= new Player(this.ctx,this.grid)
     this.laberint= new Laberint(this.ctx, this.width, this.height, this.player,this.cat, this.dog, this.finish, this.enemy, this.grid)
 },
 setDimensions: function(){
-    this.canvasDom.setAttribute('width', '900')
-    this.canvasDom.setAttribute('height', '600')
-    this.width=900
-    this.height=600
+    this.canvasDom.setAttribute('width', '1440')
+    this.canvasDom.setAttribute('height', '960')
+    this.width=1440
+    this.height=960
 },
 start: function(){
     this.reset()
@@ -51,20 +51,20 @@ start: function(){
     setInterval(()=>{
         this.clearAll()
         this.draw()
-        this.move()
+        // this.move()
     }, 1000/60)
 },
 draw: function(){
     this.laberint.printLaberint()
 },
-move: function(){
-    this.player.playerPosition()
-    this.cat.catPosition()
-    this.dog.dogPosition()
-    this.finish.finishPosition()    
-    this.enemy.enemyPosition()
+// move: function(){
+//     this.player.playerPosition()
+//     this.cat.catPosition()
+//     this.dog.dogPosition()
+//     this.finish.finishPosition()    
+//     this.enemy.enemyPosition()
 
-},
+// },
 clearAll: function(){
     this.ctx.clearRect(0, 0, this.width, this.height)
 },

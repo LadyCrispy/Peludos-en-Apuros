@@ -2,8 +2,8 @@ class Finish{
     constructor(ctx, grid){
         this.ctx=ctx
         this.grid=grid
-        this.w=50
-        this.h=50  
+        this.w=90
+        this.h=90 
         this.row=undefined
         this.col=undefined    
     }
