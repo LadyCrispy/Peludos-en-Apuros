@@ -17,7 +17,7 @@ class Player{
         this.ctx.drawImage(this.imgP,this.x,this.y, this.w, this.h)
     }
 
-    setListemers(){
+    setListeners(){
         document.onkeydown= ((e)=>{
             if(event.keycode==38){
                 this.player.moveUp()
