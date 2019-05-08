@@ -35,9 +35,10 @@ reset: function() {
     this.finish=new Finish(this.ctx, this.grid)
     this.dog=new Dog(this.ctx,this.grid)
     this.cat=new Cat(this.ctx, this.grid)
-   this.enemy= new Enemy(this.ctx, this.grid)
+    this.enemy= new Enemy(this.ctx, this.grid)
     this.player= new Player(this.ctx,this.grid)
     this.laberint= new Laberint(this.ctx, this.width, this.height, this.player,this.cat, this.dog, this.finish, this.enemy, this.grid)
+    this.points= new Points(this.ctx, this.player)
 },
 setDimensions: function(){
     this.canvasDom.setAttribute('width', '1440')
@@ -51,21 +52,35 @@ start: function(){
     setInterval(()=>{
         this.clearAll()
         this.draw()
-        // this.move()
+        this.points.init()
+        this.move()
     }, 1000/60)
 },
 draw: function(){
     this.laberint.printLaberint()
+    
 },
-// move: function(){
+ move: function(){
+    //this.enemy.enemyMoves()
 //     this.player.playerPosition()
 //     this.cat.catPosition()
 //     this.dog.dogPosition()
 //     this.finish.finishPosition()    
 //     this.enemy.enemyPosition()
 
-// },
+ },
 clearAll: function(){
     this.ctx.clearRect(0, 0, this.width, this.height)
 },
+//collision: function(){
+//        
+//    if(this.player.col < this.enemy.col + this.enemy.w &&
+//        this.player.col + this.player.w > this.enemy.col &&
+//        this.player.row < this.enemy.row + this.enemy.h &&
+//        this.player.h + this.player.row > this.enemy.y){
+//        }
+//         
+//        
+//}
+
 }
