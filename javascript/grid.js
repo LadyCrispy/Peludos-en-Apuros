@@ -1,5 +1,5 @@
 class Laberint{
-    constructor(ctx, w, h, player, cat,dog, finish, enemy, grid){
+    constructor(ctx, w, h, player, cat,dog, finish, enemy, enemy2, enemy3, grid){
         this.ctx=ctx
         this.width=w
         this.height=h
@@ -8,6 +8,8 @@ class Laberint{
         this.cat=cat
         this.dog=dog
         this.enemy=enemy
+        this.enemy2=enemy2
+        this.enemy3=enemy3
         this.grid=grid
         
     }
@@ -72,6 +74,20 @@ class Laberint{
                 this.ctx.fillStyle = 'lightblue'
                 this.ctx.fillRect(col*80, row*80, 80, 80)
                 this.finish.drawFinish(col*80, row*80)
+              break;
+
+              case 75:
+                this.img2=new Image()
+                this.img2.src='Images/azulejo.svg'
+                this.ctx.drawImage(this.img2, col*80, row*80, 80, 80)
+                this.enemy2.drawEnemy(col*80, row*80)
+              break;
+
+              case 6936:
+                this.img2=new Image()
+                this.img2.src='Images/azulejo.svg'
+                this.ctx.drawImage(this.img2, col*80, row*80, 80, 80)
+                this.enemy3.drawEnemy(col*80, row*80)
               break;
             }
           }

@@ -1,4 +1,62 @@
-canvas{
+
+
+
+.brown{
     background: rgb(151, 105, 5);
     
+}
+.init{
+    display: none;
+}
+
+.play-img{
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+}
+.header{
+    height: 600px;
+    background-image: url('Images/2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.header p{
+    font-size: 100px;
+    margin-top: 0;
+    padding-top: 170px;
+    text-align: center;
+    font-family: 'Flavors';
+    color: #FF7474;
+}
+.inicio{
+    height: 100vh;
+    background-image: url('Images/brick-wall.svg');
+    background-size: cover;
+}
+.level-complete{
+    display: none;
+}
+
+.complete{
+    display: block;
+    position: absolute;
+}
+.not-yet{
+    
+    position: absolute;
+    margin-top: 25vh;
+    margin-left: 28vw;
+    
+}
+
+.lost{
+    display: block;
+    position: absolute;
+}
+
+#canvas {
+    display: block;
+    margin: 0 auto;
 }

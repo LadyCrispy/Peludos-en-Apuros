@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Flavors" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
+    <script type="text/javascript" src="javascript/audios.js"></script>
     <script type="text/javascript" src="javascript/player.js"></script>
     <script type="text/javascript" src="javascript/cats.js"></script> 
     <script type="text/javascript" src="javascript/dogs.js"></script>
@@ -19,11 +20,18 @@
 </head>
 <body>
     <div class="inicio">
-
-    <!-- <button id="start-button">StartGame</button>-->
+        <header class="header">
+            <p> Peludos<br>en<br>Apuros</p>
+        </header>
+       
+        <img src="Images/Play.png" alt="Play" id="start-button" class="play-img">
+        
     </div>
 
     <div id="gameBoard">
+        <div id="insertWin" class="level-complete"> <img src="Images/win.png" alt="level"></div>
+        <div id="insertNotYet" class="level-complete"> <img src="Images/b_4.png" alt="notyet"></div>
+        <div id="insertLost" class="level-complete"> <img src="Images/b_4.png" alt="lost"></div>
         <canvas id="canvas"></canvas>
     </div>
     
