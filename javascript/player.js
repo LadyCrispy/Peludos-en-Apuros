@@ -1,6 +1,7 @@
 class Player{
-    constructor(ctx,grid, audio, game){
+    constructor(ctx,grid, audio, game, url){
         this.ctx=ctx
+        this.url=url
         this.w=70
         this.h=70
         this.row=undefined
@@ -20,12 +21,13 @@ class Player{
         this.winSound.src='sounds/win1.wav'
         this.click=new Audio()
         this.click.src='sounds/button-14.mp3'
+       
 
     }
 
     drawPlayer(col, row){
         this.imgP=new Image()
-        this.imgP.src= 'Images/chica.svg'
+        this.imgP.src= this.url
         this.ctx.drawImage(this.imgP,col,row,this.w, this.h)
     }
 
@@ -93,6 +95,11 @@ class Player{
         
         }else if(this.grid[this.row][this.col+1]== 1){
             this.grid[this.row][this.col]=0
+        }else if(this.grid[this.row][this.col+1]==7){
+            this.counter++
+            this.grid[this.row][this.col+1]=0
+            this.grid[this.row][this.col] = 2
+            this.guau.play()
         }
         
 

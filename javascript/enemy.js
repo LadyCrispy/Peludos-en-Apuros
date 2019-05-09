@@ -11,7 +11,8 @@ class Enemy{
         this.movingUp = true,
         this.numerito = numerito,
         this.game = game
-        
+        this.mice= new Audio()
+        this.mice.src='sounds/NFF-ghost.wav'
     }
     drawEnemy(col, row){
         this.ctx.drawImage(this.imgE, col, row, this.w, this.h)
@@ -60,6 +61,7 @@ class Enemy{
      this.enemyPosition()
       if (this.grid[this.row - 1][this.col] == 0){
         // alert("Por si no va la ñapa")
+        this.mice.play()
         this.game.player.endGame()
     } else if(this.grid[this.row-1][this.col]!==1){
        return true  
@@ -70,6 +72,7 @@ class Enemy{
         this.enemyPosition()
         if (this.grid[this.row+1][this.col] == 0){
             // alert("Por si no va la ñapa")
+            this.mice.play()
             this.game.player.endGame()
         }else if(this.grid[this.row+1][this.col]!==1){
         return true
@@ -80,6 +83,7 @@ class Enemy{
         this.enemyPosition()
         if (this.grid[this.row][this.col+1] == 0){
             // alert("Por si no va la ñapa")
+            this.mice.play()
             this.game.player.endGame()
         }else if(this.grid[this.row][this.col+1]!==1){
             return true
@@ -91,6 +95,7 @@ class Enemy{
         this.enemyPosition()
         if (this.grid[this.row][this.col-1] == 0){
             // alert("Por si no va la ñapa")
+            this.mice.play()
             this.game.player.endGame()
         }else if(this.grid[this.row][this.col-1]!== 1){
             return true
