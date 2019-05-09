@@ -1,14 +1,19 @@
 window.onload= function(){
-    document.getElementById("start-button").onclick = function() {
+    document.getElementsByClassName("start-button")[0].onclick = function() {
         let ocultar=document.getElementsByClassName("inicio")[0]
         ocultar=ocultar.setAttribute('class','init')
-        
+        Game.clickSound()
         startGame()
-}
-function startGame(id){
+    }
+
+   
+
+ startGame = (id) => {
     let brown= document.getElementById("canvas")
     brown=brown.setAttribute("class","brown")
     Game.init('canvas')
+    
+    }   
 }
 
 const Game={
@@ -38,6 +43,8 @@ const Game={
         this.start()
     },
     reset: function() {
+        this.music=new Audio('sounds/NFF-dubbio.wav')
+        this.music.loop=true
         this.framescounter = 0
         this.finish=new Finish(this.ctx, this.grid)
         this.dog=new Dog(this.ctx,this.grid)
@@ -46,8 +53,8 @@ const Game={
         this.enemy2 = new Enemy(this.ctx, this.grid, 75)
         this.enemy3 = new Enemy(this.ctx, this.grid, 6936)
         this.enemies = [this.enemy,this.enemy2,this.enemy3]
-        this.sounds= new Audios(this.ctx)
-        this.player= new Player(this.ctx,this.grid,this.sounds)
+        
+        this.player= new Player(this.ctx,this.grid,this.sounds, this)
         this.laberint= new Laberint(this.ctx, this.width, this.height, this.player,this.cat, this.dog, this.finish, this.enemy, this.enemy2, this.enemy3, this.grid)
         this.points= new Points(this.ctx, this.player)
 
@@ -61,8 +68,7 @@ const Game={
     start: function(){
         this.reset()
         this.player.setListeners()
-        this.sound()
-        if (this.backSound.ended) this.sounds.play()
+        this.music.play()
         this.interval = setInterval(()=>{
 
             this.framescounter++
@@ -71,12 +77,18 @@ const Game={
             this.draw()
             this.points.init()
             this.move()
+
+            document.getElementsByClassName("start-button")[1].onclick = () => {
+                this.win()
+            }
+
         }, 1000/60)
     },
-    sound: function(){
-        this.backSound= new Audio()
-        this.backSound.src='sounds/NFF-dubbio.wav'
-        this.backSound.play()
+    clickSound: function(){
+        this.click=new Audio()
+        this.click.src='sounds/button-14.mp3'
+        this.click.play()
+        
     },
     draw: function(){
         this.laberint.printLaberint()
@@ -87,28 +99,17 @@ const Game={
         if (this.framescounter % 4 === 0){
             this.enemies.forEach(enemy => enemy.enemyMoves())
         }
-    //     this.player.playerPosition()
-    //     this.cat.catPosition()
-    //     this.dog.dogPosition()
-    //     this.finish.finishPosition()    
-    //     this.enemy.enemyPosition()
-
+   
     },
     clearAll: function(){
         this.ctx.clearRect(0, 0, this.width, this.height)
     },
-    //collision: function(){
-    //        
-    //    if(this.player.col < this.enemy.col + this.enemy.w &&
-    //        this.player.col + this.player.w > this.enemy.col &&
-    //        this.player.row < this.enemy.row + this.enemy.h &&
-    //        this.player.h + this.player.row > this.enemy.y){
-    //        }
-    //         
-    //        
-    //}
-
-
+    stop: function() {
+        clearInterval(this.interval)
+    },
+    win: function() {
+            this.stop()
+            this.start()
+    }
   
     }
-}    

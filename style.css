@@ -1,4 +1,6 @@
-
+body{
+    background-color: lightblue;
+}
 
 
 .brown{
@@ -40,23 +42,60 @@
 }
 
 .complete{
+    position: absolute;
+    margin-top: 25vh;
+    margin-left: 28vw;
+}
+
+.complete p{
     display: block;
     position: absolute;
+    text-align: center;
+    margin-left: 200px;
+    font-size: 80px;
+    font-family: 'Flavors';
+    color: #FF7474;
+    top: 47px;
+    left: 33px;
 }
+
 .not-yet{
     
     position: absolute;
     margin-top: 25vh;
     margin-left: 28vw;
-    
+}
+.not-yet p{
+    display: block;
+    position: absolute;
+    text-align: center;
+    font-size: 80px;
+    font-family: 'Flavors';
+    color: #FF7474;
+    top: -12px;
+    left: 100px;
 }
 
 .lost{
+    position: absolute;
+    margin-top: 25vh;
+    margin-left: 28vw;
+}
+
+.lost p{
     display: block;
     position: absolute;
+    text-align: center;
+    font-size: 80px;
+    font-family: 'Flavors';
+    color: #FF7474;
+    top: 50px;
+    left: 200px;
+
 }
 
 #canvas {
     display: block;
     margin: 0 auto;
+    
 }

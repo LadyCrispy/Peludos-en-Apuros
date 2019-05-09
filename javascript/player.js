@@ -1,5 +1,5 @@
 class Player{
-    constructor(ctx,grid, audio){
+    constructor(ctx,grid, audio, game){
         this.ctx=ctx
         this.w=70
         this.h=70
@@ -9,7 +9,15 @@ class Player{
         this.counter=0
         this.audio=audio
         this.win=0
-      
+        this.game=game
+        this.cat = new Audio()
+        this.cat.src = "sounds/cat3.wav"
+        this.guau= new Audio()
+        this.guau.src='sounds/dog.mp3'
+        this.mice= new Audio()
+        this.mice.src='sounds/NFF-ghost.wav'
+        this.winSound= new Audio()
+        this.winSound.src='sounds/win1.wav'
 
     }
 
@@ -56,21 +64,29 @@ class Player{
             this.counter++
             this.grid[this.row][this.col+1]=0
             this.grid[this.row][this.col] = 2
-            this.audio.catSound()
+            this.cat.play()
+        }else if(this.grid[this.row][this.col+1] == 4||this.grid[this.row][this.col+1] == 75||this.grid[this.row][this.col+1] == 6936){
+            this.mice.play()
+            this.endGame()     
         }else if(this.grid[this.row][this.col+1]==5){
             this.counter++
             this.grid[this.row][this.col+1]=0
             this.grid[this.row][this.col] = 2
-            this.audio.dogSound()
+            this.guau.play()
         }else if(this.grid[this.row][this.col+1]===6 && this.counter===15){
             this.grid[this.row][this.col] = 2
-            //sonido
+            this.audio.winSound()
             this.win=1
             this.winGame()
+            document.getElementsByClassName("start-button")[1].onclick = function() {
+    
+                //this.clickSound()
+                startGame()
+            }
         }else if(this.grid[this.row][this.col+1]===6 && this.counter!==15){
             this.grid[this.row][this.col] = 0
             this.win=2  
-            this.notYet() 
+            this.notYet()
         }else if(this.grid[this.row][this.col+1]!==1){
             this.grid[this.row][this.col+1]=0
             this.grid[this.row][this.col] = 2
@@ -87,12 +103,15 @@ class Player{
             this.counter++
             this.grid[this.row][this.col-1]=0
             this.grid[this.row][this.col] = 2
-            this.audio.catSound()
+            this.cat.play()
+        }else if(this.grid[this.row][this.col-1] == 4||this.grid[this.row][this.col-1] == 75||this.grid[this.row][this.col-1] == 6936){
+            this.mice.play()
+            this.endGame()    
         }else if(this.grid[this.row][this.col-1]==5){
             this.counter++
             this.grid[this.row][this.col-1]=0
             this.grid[this.row][this.col] = 2
-            this.audio.dogSound()
+            this.guau.play()
         }else if(this.grid[this.row][this.col-1]==1||this.grid[10][0]===0){
         }else if(this.grid[this.row][this.col-1]!==1){
             this.grid[this.row][this.col-1]=0
@@ -106,23 +125,21 @@ class Player{
             this.counter++
             this.grid[this.row-1][this.col]=0
             this.grid[this.row][this.col] = 2
-            this.audio.catSound()
+            this.cat.play()
         }else if(this.grid[this.row-1][this.col]==5){
             this.counter++
             this.grid[this.row-1][this.col]=0
             this.grid[this.row][this.col] = 2
-            this.audio.dogSound()
+            this.guau.play()
+        }else if(this.grid[this.row-1][this.col] == 4||this.grid[this.row-1][this.col] == 75||this.grid[this.row-1][this.col] == 6936){
+            this.mice.play()
+            this.endGame()   
         }else if(this.grid[this.row-1][this.col]!==1){
             this.grid[this.row-1][this.col]=0
             this.grid[this.row][this.col] = 2
         }else if(this.grid[this.row-1][this.col]==1){
             this.grid[this.row][this.col] = 0
-        }else if(this.grid[this.row-1][this.col] == 4||this.grid[this.row-1][this.col] == 75||this.grid[this.row-1][this.col] == 6936){
-            this.grid[this.row-1][this.col]=2
-            this.grid[this.row-1][this.col]=0
-
-            this.endGame()
-        }   
+        }
     } 
     
     moveDown(){
@@ -131,12 +148,15 @@ class Player{
             this.counter++
             this.grid[this.row+1][this.col]=0
             this.grid[this.row][this.col] = 2
-            this.audio.catSound()
+            this.cat.play()
         }else if(this.grid[this.row+1][this.col]==5){
             this.counter++
             this.grid[this.row+1][this.col]=0
             this.grid[this.row][this.col] = 2
-            this.audio.dogSound()
+            this.guau.play()
+        }else if(this.grid[this.row+1][this.col] == 4||this.grid[this.row+1][this.col] == 75||this.grid[this.row+1][this.col] == 6936){
+            this.mice.play()
+            this.endGame()    
         }else if(this.grid[this.row+1][this.col]!==1){
             this.grid[this.row+1][this.col]=0
             this.grid[this.row][this.col] = 2
@@ -150,14 +170,13 @@ class Player{
 
     notYet(){
         document.getElementById("insertNotYet").className = "not-yet"
-        const text = document.createElement("div").innerHTML = "pruebaaaa"
-        //document.getElementById("insertNotYet").appendChild(text)
+       setTimeout(() => document.getElementById("insertNotYet").className = "level-complete", 2000) 
         
-
      }
     
     endGame (){
         document.getElementById("insertLost").className = "lost"
+        this.game.stop()
      }
  
 
