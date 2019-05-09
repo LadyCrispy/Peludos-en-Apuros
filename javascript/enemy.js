@@ -1,5 +1,5 @@
 class Enemy{
-    constructor(ctx, grid, numerito){
+    constructor(ctx, grid, numerito, game){
         this.ctx=ctx
         this.grid=grid
         this.w=60
@@ -9,7 +9,9 @@ class Enemy{
         this.imgE=new Image()
         this.imgE.src='Images/juguete.svg'
         this.movingUp = true,
-        this.numerito = numerito
+        this.numerito = numerito,
+        this.game = game
+        
     }
     drawEnemy(col, row){
         this.ctx.drawImage(this.imgE, col, row, this.w, this.h)
@@ -53,29 +55,33 @@ class Enemy{
             }
         }
 
-        
-
-
-        
-
     }
     enemyMoveUp(){
      this.enemyPosition()
-        if(this.grid[this.row-1][this.col]!==1){
+      if (this.grid[this.row - 1][this.col] == 0){
+        // alert("Por si no va la ñapa")
+        this.game.player.endGame()
+    } else if(this.grid[this.row-1][this.col]!==1){
        return true  
-         }
-       return false
+    } 
+        return false
     }    
     enemyMoveDown(){
         this.enemyPosition()
-        if(this.grid[this.row+1][this.col]!==1){
+        if (this.grid[this.row+1][this.col] == 0){
+            // alert("Por si no va la ñapa")
+            this.game.player.endGame()
+        }else if(this.grid[this.row+1][this.col]!==1){
         return true
         }
         return false
     }
     enemyMoveRight(){
         this.enemyPosition()
-        if(this.grid[this.row][this.col+1]!==1){
+        if (this.grid[this.row][this.col+1] == 0){
+            // alert("Por si no va la ñapa")
+            this.game.player.endGame()
+        }else if(this.grid[this.row][this.col+1]!==1){
             return true
         }
         return false
@@ -83,7 +89,10 @@ class Enemy{
  
     enemyMoveLeft(){
         this.enemyPosition()
-        if(this.grid[this.row][this.col-1]!== 1){
+        if (this.grid[this.row][this.col-1] == 0){
+            // alert("Por si no va la ñapa")
+            this.game.player.endGame()
+        }else if(this.grid[this.row][this.col-1]!== 1){
             return true
         }
         return false

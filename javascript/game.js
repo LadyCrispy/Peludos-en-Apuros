@@ -6,7 +6,18 @@ window.onload= function(){
         startGame()
     }
 
-   
+    document.getElementsByClassName("start-button")[2].onclick = () => {
+        document.getElementById("insertLost").className = "level-complete"
+        Game.clickSound()
+        Game.start()   
+    }
+
+    document.getElementsByClassName("start-button")[1].onclick = () => {
+        document.getElementById("insertWin").className = "level-complete"
+        Game.clickSound()
+        Game.level++
+        Game.start()   
+    }
 
  startGame = (id) => {
     let brown= document.getElementById("canvas")
@@ -36,6 +47,7 @@ const Game={
         [0,2,2,1,1,1,2,2,2,3,1,2,2,2,2,2,5,1],
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     ],
+    level: 1,
     init: function(id){
         this.canvasDom=document.getElementById(id)
         this.ctx=this.canvasDom.getContext('2d')
@@ -43,18 +55,65 @@ const Game={
         this.start()
     },
     reset: function() {
+        clearInterval(this.interval)
+        if (this.level === 1){
+            this.grid = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,3,2,2,5,2,1,2,5,2,1,1,1,2,3,2,2,6],
+                [1,2,1,1,1,2,2,2,1,2,1,1,1,2,1,1,1,1],
+                [1,2,1,1,1,1,2,1,1,3,1,1,1,2,2,5,2,1],
+                [1,2,2,3,1,1,75,1,1,2,1,1,1,1,1,1,2,1],
+                [1,1,1,2,1,1,2,2,2,2,2,2,2,3,2,2,2,1],
+                [1,1,2,2,2,1,1,1,1,3,1,1,1,1,1,1,1,1],
+                [1,1,5,1,2,1,4,2,2,2,2,2,1,1,6936,2,3,1],
+                [1,1,2,1,2,1,1,1,1,2,1,5,1,1,2,1,2,1],
+                [1,1,2,1,3,2,2,1,1,2,1,2,1,1,2,1,2,1],
+                [0,2,2,1,1,1,2,2,2,3,1,2,2,2,2,2,5,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            ]
+        }
+        else if (this.level === 2){
+            this.grid = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,3,2,2,5,2,1,2,5,2,1,1,1,2,3,2,2,6],
+                [1,2,1,1,1,2,2,2,1,2,1,1,1,2,1,1,1,1],
+                [1,2,1,1,1,1,2,1,1,3,1,1,1,2,2,5,2,1],
+                [1,2,2,3,1,1,75,1,1,2,1,1,1,1,1,1,2,1],
+                [1,1,1,2,1,1,2,2,2,2,2,2,2,3,2,2,2,1],
+                [1,1,2,2,2,1,1,1,1,3,1,1,1,1,1,1,1,1],
+                [1,1,5,1,2,1,4,2,2,2,2,2,1,1,6936,2,3,1],
+                [1,1,2,1,2,1,1,1,1,2,1,5,1,1,2,1,2,1],
+                [1,1,2,1,3,2,2,1,1,2,1,2,1,1,2,1,2,1],
+                [0,2,2,1,1,1,2,2,2,3,1,2,2,2,2,2,5,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            ]
+        } else if (this.level === 3){
+            this.grid = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,3,2,2,5,2,1,2,5,2,1,1,1,2,3,2,2,6],
+                [1,2,1,1,1,2,2,2,1,2,1,1,1,2,1,1,1,1],
+                [1,2,1,1,1,1,2,1,1,3,1,1,1,2,2,5,2,1],
+                [1,2,2,3,1,1,75,1,1,2,1,1,1,1,1,1,2,1],
+                [1,1,1,2,1,1,2,2,2,2,2,2,2,3,2,2,2,1],
+                [1,1,2,2,2,1,1,1,1,3,1,1,1,1,1,1,1,1],
+                [1,1,5,1,2,1,4,2,2,2,2,2,1,1,6936,2,3,1],
+                [1,1,2,1,2,1,1,1,1,2,1,5,1,1,2,1,2,1],
+                [1,1,2,1,3,2,2,1,1,2,1,2,1,1,2,1,2,1],
+                [0,2,2,1,1,1,2,2,2,3,1,2,2,2,2,2,5,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            ]
+        }
+       
         this.music=new Audio('sounds/NFF-dubbio.wav')
-        this.music.loop=true
         this.framescounter = 0
         this.finish=new Finish(this.ctx, this.grid)
         this.dog=new Dog(this.ctx,this.grid)
         this.cat=new Cat(this.ctx, this.grid)
-        this.enemy= new Enemy(this.ctx, this.grid, 4)
-        this.enemy2 = new Enemy(this.ctx, this.grid, 75)
-        this.enemy3 = new Enemy(this.ctx, this.grid, 6936)
-        this.enemies = [this.enemy,this.enemy2,this.enemy3]
-        
         this.player= new Player(this.ctx,this.grid,this.sounds, this)
+        this.enemy= new Enemy(this.ctx, this.grid, 4, this)
+        this.enemy2 = new Enemy(this.ctx, this.grid, 75, this)
+        this.enemy3 = new Enemy(this.ctx, this.grid, 6936, this)
+        this.enemies = [this.enemy,this.enemy2,this.enemy3]
         this.laberint= new Laberint(this.ctx, this.width, this.height, this.player,this.cat, this.dog, this.finish, this.enemy, this.enemy2, this.enemy3, this.grid)
         this.points= new Points(this.ctx, this.player)
 
@@ -73,14 +132,18 @@ const Game={
 
             this.framescounter++
 
+            if (this.music.ended || this.music.paused){
+                this.music.currentTime = 0
+                this.music.play()
+            }
             this.clearAll()
             this.draw()
             this.points.init()
             this.move()
 
-            document.getElementsByClassName("start-button")[1].onclick = () => {
-                this.win()
-            }
+           // document.getElementsByClassName("start-button")[1].onclick = () => {
+           //     this.win()
+           // }
 
         }, 1000/60)
     },
@@ -105,11 +168,11 @@ const Game={
         this.ctx.clearRect(0, 0, this.width, this.height)
     },
     stop: function() {
+        this.music.pause()
         clearInterval(this.interval)
     },
     win: function() {
-            this.stop()
-            this.start()
+        this.stop()
     }
   
     }

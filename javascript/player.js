@@ -18,6 +18,8 @@ class Player{
         this.mice.src='sounds/NFF-ghost.wav'
         this.winSound= new Audio()
         this.winSound.src='sounds/win1.wav'
+        this.click=new Audio()
+        this.click.src='sounds/button-14.mp3'
 
     }
 
@@ -67,7 +69,8 @@ class Player{
             this.cat.play()
         }else if(this.grid[this.row][this.col+1] == 4||this.grid[this.row][this.col+1] == 75||this.grid[this.row][this.col+1] == 6936){
             this.mice.play()
-            this.endGame()     
+            this.endGame()
+            this.game.win()     
         }else if(this.grid[this.row][this.col+1]==5){
             this.counter++
             this.grid[this.row][this.col+1]=0
@@ -75,14 +78,11 @@ class Player{
             this.guau.play()
         }else if(this.grid[this.row][this.col+1]===6 && this.counter===15){
             this.grid[this.row][this.col] = 2
-            this.audio.winSound()
+            this.winSound.play()
             this.win=1
             this.winGame()
-            document.getElementsByClassName("start-button")[1].onclick = function() {
-    
-                //this.clickSound()
-                startGame()
-            }
+            this.game.win()
+            
         }else if(this.grid[this.row][this.col+1]===6 && this.counter!==15){
             this.grid[this.row][this.col] = 0
             this.win=2  
@@ -107,6 +107,7 @@ class Player{
         }else if(this.grid[this.row][this.col-1] == 4||this.grid[this.row][this.col-1] == 75||this.grid[this.row][this.col-1] == 6936){
             this.mice.play()
             this.endGame()    
+            this.game.win()
         }else if(this.grid[this.row][this.col-1]==5){
             this.counter++
             this.grid[this.row][this.col-1]=0
@@ -133,7 +134,8 @@ class Player{
             this.guau.play()
         }else if(this.grid[this.row-1][this.col] == 4||this.grid[this.row-1][this.col] == 75||this.grid[this.row-1][this.col] == 6936){
             this.mice.play()
-            this.endGame()   
+            this.endGame() 
+            this.game.win()  
         }else if(this.grid[this.row-1][this.col]!==1){
             this.grid[this.row-1][this.col]=0
             this.grid[this.row][this.col] = 2
@@ -156,7 +158,8 @@ class Player{
             this.guau.play()
         }else if(this.grid[this.row+1][this.col] == 4||this.grid[this.row+1][this.col] == 75||this.grid[this.row+1][this.col] == 6936){
             this.mice.play()
-            this.endGame()    
+            this.endGame() 
+            this.game.win()   
         }else if(this.grid[this.row+1][this.col]!==1){
             this.grid[this.row+1][this.col]=0
             this.grid[this.row][this.col] = 2
@@ -165,7 +168,8 @@ class Player{
     }
     
     winGame (){
-        document.querySelector(".level-complete").className = "complete"
+        document.getElementById("insertWin").className = "complete"
+        this.game.stop()
      }
 
     notYet(){
@@ -178,6 +182,4 @@ class Player{
         document.getElementById("insertLost").className = "lost"
         this.game.stop()
      }
- 
-
 }
