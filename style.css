@@ -94,6 +94,24 @@ body{
 
 }
 
+.win{
+    position: absolute;
+    margin-top: 25vh;
+    margin-left: 28vw;
+}
+
+.win p{
+    display: block;
+    position: absolute;
+    text-align: center;
+    margin-left: 200px;
+    font-size: 80px;
+    font-family: 'Flavors';
+    color: #FF7474;
+    top: 47px;
+    left: 33px;
+}
+
 #canvas {
     display: block;
     margin: 0 auto;
