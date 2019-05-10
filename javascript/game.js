@@ -16,7 +16,9 @@ window.onload= function(){
         document.getElementById("insertWin").className = "level-complete"
         Game.clickSound()
         Game.level++
-        Game.start()   
+        if(Game.level<4){
+            Game.start()   
+        }
     }
 
  startGame = (id) => {
@@ -104,7 +106,7 @@ const Game={
             ]
         }
        
-        this.music=new Audio('sounds/NFF-dubbio.wav')
+        this.music=new Audio('sounds/back2.mp3')
         this.framescounter = 0
         this.finish=new Finish(this.ctx, this.grid)
         this.dog=new Dog(this.ctx,this.grid)
